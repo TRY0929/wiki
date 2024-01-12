@@ -28,7 +28,7 @@ Accept: application/json
 ###
 
 
-GET http://localhost:8881/demo
+GET http://localhost:8881/course
 Accept: application/json
 
 ###
