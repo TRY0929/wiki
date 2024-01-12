@@ -26,3 +26,9 @@ GET http://localhost:8881/test/list
 Accept: application/json
 
 ###
+
+
+GET http://localhost:8881/demo
+Accept: application/json
+
+###
