@@ -1,8 +1,9 @@
 package com.puiken.wiki.controller;
 
-import com.puiken.wiki.entity.Course;
 import com.puiken.wiki.entity.Demo;
+import com.puiken.wiki.req.CourseReq;
 import com.puiken.wiki.resp.CommonResp;
+import com.puiken.wiki.resp.CourseResp;
 import com.puiken.wiki.service.CourseService;
 import com.puiken.wiki.service.DemoService;
 import com.puiken.wiki.service.TestService;
@@ -33,9 +34,10 @@ public class TestController {
     }
 
     @GetMapping("/course")
-    public CommonResp<List<Course>> getList() {
-        List<Course> list = courseService.list();
-        CommonResp<List<Course>> resp = new CommonResp<>();
+    public CommonResp<List<CourseResp>> getList(CourseReq req) {
+
+        List<CourseResp> list = courseService.list(req);
+        CommonResp<List<CourseResp>> resp = new CommonResp<>();
         resp.setContent(list);
         return resp;
     }
