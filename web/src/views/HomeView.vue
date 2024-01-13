@@ -60,15 +60,11 @@
   </a-layout>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script lang="ts" setup>
+import { ref } from "vue";
 import { LaptopOutlined, NotificationOutlined, UserOutlined } from "@ant-design/icons-vue"; // @ is an alias to /src
 
-export default defineComponent({
-  name: "HomeView",
-  components: {
-    LaptopOutlined,
-    UserOutlined, NotificationOutlined,
-  },
-});
+const selectedKeys2 = ref<string[]>(["1"]);
+const openKeys = ref<string[]>(["sub1"]);
+
 </script>
