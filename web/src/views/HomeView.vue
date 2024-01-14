@@ -63,8 +63,12 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import { LaptopOutlined, NotificationOutlined, UserOutlined } from "@ant-design/icons-vue"; // @ is an alias to /src
+import axios from "axios";
 
 const selectedKeys2 = ref<string[]>(["1"]);
 const openKeys = ref<string[]>(["sub1"]);
+
+const res = await axios.get('http://localhost:8881/course?name=test');
+console.log(res);
 
 </script>
