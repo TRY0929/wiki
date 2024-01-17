@@ -8,6 +8,7 @@ import com.puiken.wiki.resp.CourseResp;
 import com.puiken.wiki.util.CopyUtil;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,16 +21,12 @@ public class CourseService {
     public List<CourseResp> list(CourseReq req) {
         CourseExample courseExample = new CourseExample();
         CourseExample.Criteria criteria = courseExample.createCriteria();
-        criteria.andNameLike("%" + req.getName() + "%");
+        if (!ObjectUtils.isEmpty(req.getName())) {
+            criteria.andNameLike("%" + req.getName() + "%");
+        }
         List<Course> courseList = courseMapper.selectByExample(courseExample);
 
         List<CourseResp> respList = new ArrayList<>();
-
-//        for(Course course : courseList) {
-//            CourseResp courseResp = new CourseResp();
-//            BeanUtils.copyProperties(course, courseResp);
-//            respList.add(courseResp);
-//        }
 
         respList = CopyUtil.copyList(courseList, CourseResp.class);
         return respList;

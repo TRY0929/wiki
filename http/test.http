@@ -28,7 +28,7 @@ Accept: application/json
 ###
 
 
-GET http://localhost:8881/course?name=test&id=123
+GET http://localhost:8881/ebook?name=Spring&id=123
 Accept: application/json
 
 ###

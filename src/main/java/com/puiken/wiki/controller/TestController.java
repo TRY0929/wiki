@@ -1,11 +1,11 @@
 package com.puiken.wiki.controller;
 
 import com.puiken.wiki.entity.Demo;
-import com.puiken.wiki.req.CourseReq;
+import com.puiken.wiki.req.EbookReq;
 import com.puiken.wiki.resp.CommonResp;
-import com.puiken.wiki.resp.CourseResp;
-import com.puiken.wiki.service.CourseService;
+import com.puiken.wiki.resp.EbookResp;
 import com.puiken.wiki.service.DemoService;
+import com.puiken.wiki.service.EbookService;
 import com.puiken.wiki.service.TestService;
 import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,7 +24,7 @@ public class TestController {
     private DemoService demoService;
 
     @Resource
-    private CourseService courseService;
+    private EbookService ebookService;
 
     @Value("${test.hello}")
     private String testProp;
@@ -33,11 +33,11 @@ public class TestController {
         return demoService.list();
     }
 
-    @GetMapping("/course")
-    public CommonResp<List<CourseResp>> getList(CourseReq req) {
+    @GetMapping("/ebook")
+    public CommonResp<List<EbookResp>> getList(EbookReq req) {
 
-        List<CourseResp> list = courseService.list(req);
-        CommonResp<List<CourseResp>> resp = new CommonResp<>();
+        List<EbookResp> list = ebookService.list(req);
+        CommonResp<List<EbookResp>> resp = new CommonResp<>();
         resp.setContent(list);
         return resp;
     }

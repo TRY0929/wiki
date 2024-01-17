@@ -54,21 +54,65 @@
             minHeight: '280px'
           }"
       >
-        Content
+        <a-list
+            item-layout="horizontal"
+            :pagination="pagination"
+            :data-source="ebook"
+            :grid="{ gutter: 200, column: 3 }"
+        >
+          <template #renderItem="{ item }">
+            <a-list-item key="item.name">
+              <template #actions>
+                <span v-for="{ icon, text } in actions" :key="icon">
+                  <component :is="icon" style="margin-right: 8px" />
+                  {{ text }}
+                </span>
+              </template>
+              <a-list-item-meta :description="item.description">
+                <template #title>
+                  <a :href="item.href">{{ item.title }}</a>
+                </template>
+                <template #avatar><a-avatar :src="item.cover" /></template>
+              </a-list-item-meta>
+              {{ item.description }}
+            </a-list-item>
+          </template>
+        </a-list>
       </a-layout-content>
     </a-layout>
   </a-layout>
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
-import { LaptopOutlined, NotificationOutlined, UserOutlined } from "@ant-design/icons-vue"; // @ is an alias to /src
+import { onMounted, ref } from 'vue';
+import { LaptopOutlined, NotificationOutlined, UserOutlined, StarOutlined, LikeOutlined, MessageOutlined } from "@ant-design/icons-vue"; // @ is an alias to /src
 import axios from "axios";
+
+const ebook = ref([]);
 
 const selectedKeys2 = ref<string[]>(["1"]);
 const openKeys = ref<string[]>(["sub1"]);
 
-const res = await axios.get('http://localhost:8881/course?name=test');
-console.log(res);
+const pagination = {
+  onChange: (page: number) => {
+    console.log(page);
+  },
+  pageSize: 100,
+};
+const actions: Record<string, any>[] = [
+  { icon: StarOutlined, text: '156' },
+  { icon: LikeOutlined, text: '156' },
+  { icon: MessageOutlined, text: '2' },
+];
+
+onMounted(async () => {
+  const res = await axios.get('http://localhost:8881/ebook');
+  if (res?.data?.success) {
+    ebook.value = res.data.content;
+  }
+  console.log(res);
+})
+
+
 
 </script>

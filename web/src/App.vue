@@ -1,9 +1,9 @@
 <template>
-  <a-layout>
-    <wiki-header></wiki-header>
-    <router-view></router-view>
-    <wiki-footer></wiki-footer>
-  </a-layout>
+    <a-layout id="app">
+      <wiki-header></wiki-header>
+      <router-view></router-view>
+      <wiki-footer></wiki-footer>
+    </a-layout>
 </template>
 
 <script lang="ts" setup>
@@ -27,5 +27,9 @@ import WikiFooter from "@/components/WikiFooter.vue";
 
 .site-layout-background {
   background: #fff;
+}
+#app {
+  height: 100%;
+  width: 100%;
 }
 </style>
