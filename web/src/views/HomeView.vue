@@ -106,7 +106,8 @@ const actions: Record<string, any>[] = [
 ];
 
 onMounted(async () => {
-  const res = await axios.get('http://localhost:8881/ebook');
+  console.log('----HomeView onMounted----');
+  const res = await axios.get('/ebook');
   if (res?.data?.success) {
     ebook.value = res.data.content;
   }
